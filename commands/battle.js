@@ -63,10 +63,3 @@ damageEnemy('goblin_2', 3);
 addStatus('bugbear_3', 'poisoned', 2);
 removeStatus('bugbear_1', 'wizard');
 
-function list() {
-  for (const e of enemies) {
-    console.log(e);
-  }
-}
-
-list();

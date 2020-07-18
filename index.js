@@ -27,19 +27,30 @@ client.on('message', message => {
   console.log(message.author);
   if (!message.content.startsWith(PREFIX) || message.author.bot) return;
 
-  const args = message.content.slice(PREFIX.length).trim().split(' ');
-  const command = args.shift().toLowerCase();
+  const args = message.content.slice(PREFIX.length).trim().split(/ +/);
+  const commandName = args.shift().toLowerCase();
 
-  if (command === 'create') {
-    client.commands.get('create').execute(message, args);
-    console.log('IN CREATE ROUTE');
-    console.log(args);
-    // message.channel.bulkDelete(3);
-    // if (message.mentions.users.size) {
-    //   const taggedUser = message.mentions.users.first();
-    //   message.channel.send(`You wanted to kick: ${taggedUser.username}`);
-    // } else {
-    //   message.reply('Please tag a valid user!');
-    // }
+  if (!client.commands.has(commandName)) return;
+
+  const command = client.commands.get(commandName);
+
+  try {
+    command.execute(message, args);
+  } catch (error) {
+    console.error(error);
+    message.reply('there was an error trying to execute that command!');
   }
+
+  // if (command === 'create') {
+  //   client.commands.get('create').execute(message, args);
+  //   console.log('IN CREATE ROUTE');
+  //   console.log(args);
+  //   // message.channel.bulkDelete(3);
+  //   // if (message.mentions.users.size) {
+  //   //   const taggedUser = message.mentions.users.first();
+  //   //   message.channel.send(`You wanted to kick: ${taggedUser.username}`);
+  //   // } else {
+  //   //   message.reply('Please tag a valid user!');
+  //   // }
+  // }
 });
