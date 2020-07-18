@@ -1,5 +1,3 @@
-const { execute } = require("./create-scene");
-
 const Enemy = require('../models/enemy');
 
 module.exports = {
