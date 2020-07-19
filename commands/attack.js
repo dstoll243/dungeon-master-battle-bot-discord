@@ -4,12 +4,6 @@ module.exports = {
   name: 'attack',
   description: 'attack an enemy',
   async execute(message, args) {
-    console.log('GUILD ID ---> ' + message);
-    console.log('CHANNEL ID ---> ' + message.channel.id);
-    // const enemy = new Enemy({
-    //   channelId: message.channel.id,
-    //   name: args[0] || 'name',
-    // });
     const [target, attackDamage] = args;
     console.log(args[0]);
     const enemy = await Enemy.findOne({ name: target }).exec();

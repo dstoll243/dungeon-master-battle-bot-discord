@@ -4,7 +4,7 @@ module.exports = {
   name: 'kill',
   description: 'eliminate your enemy',
   async execute(message, args) {
-    const enemy = await Enemy.findOne({ name: args[0] }).exec();
+    const enemy = await Enemy.findOne({ displayName: args[0] }).exec();
     if (!enemy) {
       message.channel.send('That enemy does not exist to murder');
     } else {

@@ -5,6 +5,9 @@ const EnemySchema = new mongoose.Schema({
     type: String,
     unique: true,
   },
+  displayName: {
+    type: String,
+  },
   channelId: {
     type: String,
   },

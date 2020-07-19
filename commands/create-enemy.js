@@ -4,15 +4,23 @@ module.exports = {
   name: 'create-enemy',
   description: 'Create a new enemy',
   async execute(message, args) {
-    console.log('GUILD ID ---> ' + message);
-    console.log('CHANNEL ID ---> ' + message.channel.id);
-    const enemy = new Enemy({
-      channelId: message.channel.id,
-      name: args[0] || 'name',
-      damage: 0,
-    });
-    // const enemy = new Enemy(args[0], args[1]);
-    await enemy.save();
-    message.channel.send(`You've created a new ${enemy.name}`);
+    if (!args[0]) {
+      return message.channel.send('You need to include the enemy names.');
+    }
+    for (let i = 0; i < args.length; i++) {
+      const enemy = new Enemy({
+        channelId: message.channel.id,
+        displayName: args[i],
+        name: `${args[i]}-${message.channel.id}`,
+        damage: 0,
+      });
+      await enemy.save(err => {
+        if (err) {
+          return message.channel.send(`${args[i]} already exists`);
+        } else {
+          message.channel.send(`A ${enemy.displayName} awaits you for battle`);
+        }
+      });
+    }
   },
 };
