@@ -2,6 +2,8 @@
 
 ## Invite to your server
 
+[https://discord.com/api/oauth2/authorize?client_id=733789329104699454&permissions=67584&scope=bot](https://discord.com/api/oauth2/authorize?client_id=733789329104699454&permissions=67584&scope=bot)
+
 ## Commands
 
 ### `/create-enemy <enemy-name> [, <enemy-name>]`
