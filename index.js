@@ -22,6 +22,8 @@ mongoose.connect(process.env.MONGO_URI, {
   useUnifiedTopology: true,
 });
 
+// see discord developer documentation https://discordjs.guide/command-handling/#individual-command-files
+
 client.on('ready', () => {
   console.info(`Logged in as ${client.user.tag}!`);
 });
