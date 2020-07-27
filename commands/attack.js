@@ -9,7 +9,9 @@ module.exports = {
     const damage = parseInt(attackDamage);
     if (!enemy) {
       message.channel.send('There is no target by that name');
-    } else if (!isNaN(damage)) {
+    } else if (isNaN(damage)) {
+      message.channel.send('Please input a valid damage number');
+    } else {
       const totalDamage = enemy.damage + damage;
       await enemy.update({ damage: totalDamage });
       message.channel.send(`${message.author} attacked the ${enemy.displayName} and they have taken ${totalDamage} total damage`);
